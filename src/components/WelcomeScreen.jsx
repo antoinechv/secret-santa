@@ -2,7 +2,7 @@ export function WelcomeScreen({onStart}) {
     return (
         <div className=" flex flex-col p-4">
             <h1 className="font-bold text-2xl">
-                It's TIIIIIMMMMMEEEEE
+                It's TIIIIIMMMMMEEEEEE
             </h1>
 
                 <p className=" font-light text-sm ">
