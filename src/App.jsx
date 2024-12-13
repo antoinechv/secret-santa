@@ -2,6 +2,7 @@ import {useState} from "react";
 import {WelcomeScreen} from "./components/WelcomeScreen.jsx";
 import {ParticipantInput} from "./components/ParticipantInput.jsx";
 import {AssignmentDisplay} from "./components/AssignmentDisplay.jsx";
+import Snowfall from "./components/Snowfall.jsx";
 
 export default function App() {
 
@@ -51,9 +52,9 @@ export default function App() {
     };
 
     return (
-        <div className=" ">
+        <div className=" bg-[#badac4] h-screen">
             <div>
-
+                <Snowfall />
                 {currentScreen === "welcome" && (
                     <WelcomeScreen onStart={() => setCurrentScreen("input")}/>
                 )}
