@@ -54,7 +54,7 @@ body {
   background-color: #87cefa; /* Bleu ciel */
 }
 
-/* Ajoute des flocons qui tombent en arrière-plan */
+
 .snowfall {
   position: absolute;
   top: 0;
@@ -71,6 +71,37 @@ body {
   opacity: 0.75;
   animation: fall linear infinite;
 }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes zoomToButton {
+  0% {
+    transform: scale(1);
+    transform-origin: center center;
+  }
+  100% {
+    transform: scale(8); /* Augmente l'échelle pour zoomer dans le bouton */
+    transform-origin: center center; /* Garde le centre du bouton comme point focal */
+    opacity: 0; /* Disparaît en fin de zoom */
+  }
+}
+
+.animate-zoomToButton {
+  animation: zoomToButton 3s ease-in-out forwards;
+}
+
 
 :root {
   --font-sans: "Poppins";
