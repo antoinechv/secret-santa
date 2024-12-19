@@ -11,24 +11,14 @@ export default function App() {
     const [currentScreen, setCurrentScreen] = useState("welcome");
     const [modalOpen, setModalOpen] = useState(false);
 
+    // Ajout d'un participant
     const addParticipant = (name) => {
-        if (name !== "") {
-            setParticipants([...participants, name]);
-        }
+        setParticipants([...participants, name]);
     };
 
-    // Supprimer un participant
+    // Suppression d'un participant
     const removeParticipant = (index) => {
         setParticipants(participants.filter((_, i) => i !== index));
-    };
-
-    // Mettre à jour un participant
-    const updateParticipant = (index, newData) => {
-        setParticipants((prevParticipants) =>
-            prevParticipants.map((participant, i) =>
-                i === index ? newData.name : participant
-            )
-        );
     };
 
     // Distribution des cadeaux
@@ -49,7 +39,7 @@ export default function App() {
         setCurrentScreen("assignments");
     };
 
-    // Réinitialiser l'application
+
     const resetApp = () => {
         setParticipants([]);
         setAssignments([]);
@@ -57,7 +47,7 @@ export default function App() {
     };
 
     return (
-        <div className="bg-[#badac4] text-white h-screen overflow-hidden bg-grain">
+        <div className="bg-[#badac4] text-white h-screen overflow-hidden bg-grain flex flex-col ">
             <div>
                 <Snowfall />
                 <Modal
@@ -68,10 +58,9 @@ export default function App() {
                 {currentScreen === "welcome" && (
                     <WelcomeScreen onStart={() => setCurrentScreen("input")} />
                 )}
-
                 {currentScreen === "input" && (
                     <div
-                        className="p-6 rounded-lg animate-fadeIn transition-transform transform duration-500 overflow-hidden"
+                        className=" flex flex-col items-center justify-center p-6 rounded-lg animate-fadeIn transition-transform transform duration-500"
                         style={{ animation: "fadeIn 0.5s ease-in-out" }}
                     >
                         <h2 className="text-2xl font-bold mb-6 text-center">
@@ -81,9 +70,7 @@ export default function App() {
                             participants={participants}
                             onAddParticipant={addParticipant}
                             onRemoveParticipant={removeParticipant}
-                            onUpdateParticipant={updateParticipant}
                         />
-
                         <div className="flex justify-center pt-6">
                             <button
                                 className="relative px-6 py-3 bg-red-500 text-white rounded-full shadow-lg transition-transform transform hover:scale-105 hover:bg-red-600"
@@ -96,17 +83,15 @@ export default function App() {
                 )}
 
                 {currentScreen === "assignments" && (
-                    <>
-                        <h2 className="text-2xl font-bold mb-6 text-center">
+                    <div className="flex justify-start md:justify-center items-center flex-col  gap-5 p-2">
+                        <h2 className="text-4xl font-bold text-center">
                             Attributions des cadeaux
                         </h2>
-                        <AssignmentDisplay assignments={assignments} />
-                        <div className="mt-6">
-                            <button className="button w-full" onClick={resetApp}>
-                                Recommencer
-                            </button>
-                        </div>
-                    </>
+                        <AssignmentDisplay
+                            assignments={assignments}
+                        />
+
+                    </div>
                 )}
             </div>
         </div>

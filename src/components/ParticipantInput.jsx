@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 
 export function ParticipantInput({
                                      participants,
@@ -22,30 +22,40 @@ export function ParticipantInput({
     }, [participants]);  // Watch for changes in the participants prop
 
     return (
-        <div className="space-y-6 p-4">
-            <div className="flex space-x-2">
+        <div className="flex flex-col items center  gap-5 p-4 overflow-hidden h-[80vh]">
+
+            <div className="relative flex items-center w-full">
                 <input
                     type="text"
-                    className="input flex-grow px-4 py-2 border bg-red-500 text-white rounded-full focus:outline-none focus:ring-2"
+                    className="input w-full px-4 py-2 pr-10 border bg-red-500 text-white rounded-full focus:outline-none focus:ring-2"
                     placeholder="Entrez un nom"
                     value={currentName}
                     onChange={(e) => setCurrentName(e.target.value)}
                     onKeyPress={(e) => e.key === "Enter" && addParticipant()}
                 />
                 <button
-                    className="px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-600"
+                    className="absolute right-3  bg-red-100 text-red-500 rounded-full w-8 h-8 flex items-center justify-center hover:bg-white"
                     onClick={addParticipant}
                 >
-                    Ajouter
+                    +
                 </button>
             </div>
+            <div className="flex flex-row gap-2 justify-between">
+                <div className="flex flex-col gap-2 ">
+                    <h2 className="font-poppins font-bold text-3xl">Participants</h2>
+                    <span className="font-poppins font-light text-lg text-yellow-400">
+                        {participants.length} personnes
+                    </span>
+                </div>
 
-            <ul>
+                <img className="w-20 h-auto" src="./assets/hotte.png" alt=""/>
+            </div>
+            <ul className="overflow-auto flex flex-col gap-1">
                 {participants.map((participant, index) => (
                     <li
                         key={index}
                         className="animate-fadeIn mb-2 flex justify-between items-center bg-[#689464] p-6 rounded-full shadow"
-                        style={{ animationDelay: `${index * 0.1}s` }}
+                        style={{animationDelay: `${index * 0.1}s`}}
                     >
                         <div className="flex items-center gap-4">
                             <span>{participant || "Nom non disponible"}</span>
