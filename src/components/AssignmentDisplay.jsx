@@ -73,7 +73,7 @@ export function AssignmentDisplay({ assignments }) {
             : "";
 
     return (
-        <div className="relative flex flex-col gap-5 items-center justify-center overflow-hidden h-[80vh] ">
+        <div className="relative flex flex-col gap-5 items-center justify-center overflow-hidden max-h-[80vh] ">
             {currentOfferer && (
                 <div className="mb-4 text-xl font-semibold text-center">
                     <p> {currentOfferer} choisit une carte.</p>
@@ -129,7 +129,7 @@ export function AssignmentDisplay({ assignments }) {
                                         display: isFlipped ? "flex" : "none",
                                     }}
                                 >
-                                    <div className="text-sm font-semibold">{assignment.receiver}</div>
+                                    <div className="text-sm font-semibold">tu offres un cadeau à {assignment.receiver}</div>
                                     <img
                                         src="./assets/noeud.png"
                                         className="w-16 absolute top-[-2rem]"
