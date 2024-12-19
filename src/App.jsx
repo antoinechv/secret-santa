@@ -8,23 +8,28 @@ import { Modal } from "./components/Modal.jsx";
 export default function App() {
     const [participants, setParticipants] = useState([]); // Liste des participants
     const [currentScreen, setCurrentScreen] = useState("welcome"); // Gestion de l'écran actif
-    const [modalOpen, setModalOpen] = useState(false); // Gestion de l'affichage du modal
+    const [modal, setModal] = useState({ isOpen: false, message: "" }); // Gestion du modal d'erreur
 
     // Ajout d'un participant
     const addParticipant = (name) => {
         if (!name.trim() || participants.includes(name)) return; // Empêcher les doublons ou noms vides
-        setParticipants([...participants, name]);
+        setParticipants((prevParticipants) => [...prevParticipants, name]);
     };
 
     // Suppression d'un participant
     const removeParticipant = (index) => {
-        setParticipants(participants.filter((_, i) => i !== index));
+        setParticipants((prevParticipants) =>
+            prevParticipants.filter((_, i) => i !== index)
+        );
     };
 
     // Démarrage de l'attribution (vérification des participants)
     const startAssignments = () => {
         if (participants.length < 2) {
-            setModalOpen(true); // Affiche un message d'erreur si moins de 2 participants
+            setModal({
+                isOpen: true,
+                message: "Il faut au moins 2 participants pour faire un Secret Santa !",
+            });
             return;
         }
         setCurrentScreen("assignments"); // Passe à l'écran d'attribution des cartes
@@ -36,13 +41,16 @@ export default function App() {
         setCurrentScreen("welcome");
     };
 
+    // Fermer le modal
+    const closeModal = () => setModal({ isOpen: false, message: "" });
+
     return (
         <div className="bg-[#badac4] text-white h-screen overflow-hidden bg-grain flex flex-col">
             <Snowfall />
             <Modal
-                isOpen={modalOpen}
-                onClose={() => setModalOpen(false)}
-                message="Il faut au moins 2 participants pour faire un Secret Santa !"
+                isOpen={modal.isOpen}
+                onClose={closeModal}
+                message={modal.message}
             />
             {/* Écran d'accueil */}
             {currentScreen === "welcome" && (
@@ -53,7 +61,6 @@ export default function App() {
             {currentScreen === "input" && (
                 <div
                     className="flex flex-col items-center justify-center p-6 rounded-lg animate-fadeIn transition-transform transform duration-500"
-                    style={{ animation: "fadeIn 0.5s ease-in-out" }}
                 >
                     <h2 className="text-2xl font-bold mb-6 text-center">
                         Ajoutez les participants
