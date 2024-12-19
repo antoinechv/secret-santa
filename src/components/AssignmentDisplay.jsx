@@ -158,7 +158,9 @@ export function AssignmentDisplay({ participants }) {
                                         src="./assets/noeud.png"
                                         className="w-16 absolute top-[-2rem]"
                                     />
-                                    <div className="text-lg font-semibold">Cliquez pour découvrir</div>
+                                    <div className="text-lg font-semibold" >
+                                        {isChosen ? "Déjà choisi" : "Cliquez pour découvrir"}
+                                    </div>
                                 </div>
 
                                 {/* Face arrière */}
