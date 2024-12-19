@@ -154,6 +154,10 @@ export function AssignmentDisplay({ participants }) {
                                         display: isFlipped ? "none" : "flex",
                                     }}
                                 >
+                                    <img
+                                        src="./assets/noeud.png"
+                                        className="w-16 absolute top-[-2rem]"
+                                    />
                                     <div className="text-lg font-semibold">Cliquez pour découvrir</div>
                                 </div>
 
