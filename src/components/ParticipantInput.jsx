@@ -22,7 +22,7 @@ export function ParticipantInput({ participants, onAddParticipant, onRemoveParti
     }, [participants]);
 
     return (
-        <div className="flex flex-col items-center gap-5 p-4 overflow-hidden max-h-[80vh]">
+        <div className="flex flex-col items-center gap-5 p-4 overflow-hidden min-h-[40vh] max-h-[80vh]">
             <div className="relative flex items-center w-full">
                 <input
                     type="text"
